@@ -167,7 +167,7 @@ button{
   <p style="margin-top:20px;">Stay with me for a long time</p>
   <div class="answers">
     <button onclick="showGameClear()">YES</button>
-    <button id="noBtn" onmouseover="moveNoBtn()" ontouchstart="moveNoBtn()">NO</button>
+    <button id="noBtn" onclick="moveNoBtn()">NO</button>
   </div>
 </div>
 
@@ -183,7 +183,7 @@ button{
 
 <script>
 const text1="HAPPY\nVALENTINE’S DAY\nIMEE 💖";
-const text3="IMEE,\n\nThanks for always being there for me.\nI love you so much!\nSorry I can be a baby sometimes\n\nI want us to stay together\nfor a really long time.\n\nIf we ever fight, let's talk it out\nso we can understand each other.\nIf you are not okay with anything,\nplease tell me. I will try to be better.\n\nI've got your back,\nand I'll always cheer you on.\n\n- Beam 💖";
+const text3="IMEE,\n\nThanks for always being there for me.\nI love you so much!\nSorry I can be a baby sometimes 🥺\n\nI want us to stay together\nfor a really long time.\n\nIf we ever fight, let's talk it out\nso we can understand each other.\nIf you are not okay with anything,\nplease tell me. I will try to be better.\n\nI've got your back,\nand I'll always cheer you on.\n\n- Beam 💖";
 
 function typeEffect(el,text,speed=45){
   el.innerHTML="";
@@ -254,10 +254,26 @@ function spawnHearts(){
   }
 }
 
-// ฟังก์ชันทำให้ปุ่ม NO ขยับหนีเวลาเอาเมาส์ชี้ หรือ เอานิ้วแตะ
+// ตัวแปรเก็บขนาดของปุ่ม เริ่มต้นที่ 1 (100%)
+let noScale = 1.0;
+
+// ฟังก์ชันทำให้ปุ่ม NO ขยับหนีและเล็กลงเมื่อถูกกด
 function moveNoBtn() {
   const btn = document.getElementById("noBtn");
-  btn.style.position = "absolute";
+  
+  // ลดขนาดลงทีละ 0.2 (20%)
+  noScale -= 0.2;
+  
+  // ถ้าขนาดเหลือน้อยกว่าหรือเท่ากับ 0 ให้ซ่อนปุ่มไปเลย
+  if (noScale <= 0.05) { 
+    btn.style.display = "none";
+    return;
+  }
+  
+  // อัปเดตขนาดปุ่ม
+  btn.style.transform = `scale(${noScale})`;
+  btn.style.position = "fixed";
+  btn.style.zIndex = "9999";
   
   // คำนวณพื้นที่สุ่มไม่ให้ปุ่มกระเด็นออกนอกจอ
   const maxX = window.innerWidth - btn.offsetWidth;
@@ -268,7 +284,7 @@ function moveNoBtn() {
   
   btn.style.left = randomX + "px";
   btn.style.top = randomY + "px";
-  btn.style.transition = "0.2s"; // ให้ปุ่มลอยหนีแบบสมูทขึ้นนิดนึง
+  btn.style.transition = "all 0.2s ease"; // ให้การขยับและย่อขนาดดูสมูท
 }
 </script>
 
