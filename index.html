@@ -170,7 +170,7 @@ button{
 
 <div class="screen" id="messageScreen">
   <p id="longText"></p>
-  <p style="margin-top:20px;">Stay with me for a long time</p>
+  <p style="margin-top:20px;">Will You Be My Valentine?</p>
   <div class="answers">
     <button onclick="showGameClear()">YES</button>
     <button id="noBtn" onclick="moveNoBtn()">NO</button>
@@ -190,7 +190,6 @@ button{
 <script>
 const text1="HAPPY\nVALENTINE’S DAY\nIMEE 💖";
 
-// จัดเรียงข้อความใหม่ให้ขึ้นบรรทัดใหม่สวยงาม และเปลี่ยนเป็นภาษาไทยตามที่ขอ
 const text3="IMEE,\n\nThanks for always being\nthere for me.\nI love you so much!\n\nI want us to stay together\nfor a really long time.\n\nIf we ever fight,\nlet's talk it out\nso we can understand\neach other.\n\nIf you are not okay\nwith anything,\nplease tell me.\nI will try to be better.\n\nI've got your back,\nand I'll always cheer\nyou on.\n\n- Beam 💖";
 
 function typeEffect(el, text, speed=45) {
@@ -272,7 +271,7 @@ let noScale = 1.0;
 
 function moveNoBtn() {
   const btn = document.getElementById("noBtn");
-  const container = document.querySelector(".game-screen"); // อ้างอิงกล่องสีขาว
+  const container = document.querySelector(".game-screen");
   
   noScale -= 0.2;
   
@@ -281,12 +280,10 @@ function moveNoBtn() {
     return;
   }
   
-  // เปลี่ยนเป็น absolute เพื่อให้วิ่งอยู่แค่ในกรอบ .game-screen
   btn.style.position = "absolute";
   btn.style.transform = `scale(${noScale})`;
   btn.style.zIndex = "9999";
   
-  // คำนวณพื้นที่สุ่ม โดยหักลบขนาดของปุ่มและระยะขอบ (Margin) เพื่อไม่ให้ชิดขอบเกินไป
   const padding = 20;
   const maxX = container.clientWidth - btn.offsetWidth - padding;
   const maxY = container.clientHeight - btn.offsetHeight - padding;
@@ -302,4 +299,5 @@ function moveNoBtn() {
 
 </body>
 </html>
+
 
